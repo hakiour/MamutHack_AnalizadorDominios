@@ -1,5 +1,5 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!C:/Users/sergi/AppData/Local/Programs/Python/Python37-32/python.exe
+print("Content-Type: text/html\n")
 
 from urllib.request import Request, urlopen
 import re
@@ -56,6 +56,7 @@ def readLinks():
 	datosForm = cgi.FieldStorage()
 
 	if datosForm:
+		print("adasd")
 		url = datosForm["url"]
 		arrayUrl = (url.split("//"))
 		if len(arrayUrl) == 2: 
@@ -79,18 +80,15 @@ def readLinks():
 
 		for link in arrayUrls[:-1]:
 			print("reading link: "+ link)
-			urlToList(link, "test"+str(i), urlSrc)
+			urlToList(link, "test"+str(i), url)
 			i+=1
+		
 	else:
 		print('Error input')
-
-
 
 #url = "https://www.elmundo.es/pais-vasco/2019/07/10/5d25f9af21efa0c0578b456f.html"
 #urlToList(url,file)
 
-readLinks()
-
-
-
+#readLinks()
+print("asd")
 #map reduce para contar palabras
