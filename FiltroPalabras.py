@@ -46,6 +46,7 @@ def csv2Dict(fichero):
         """
         for row in rd:
             nuevo=dict(row)
+        print(nuevo)
     f.close()
     return nuevo
 
@@ -59,8 +60,8 @@ def json2Array(fichero2):
     return array
 
 
-fichero = "/Users/danielortega/Desktop/diccionario.csv"
-fichero2 = "/Users/danielortega/Desktop/test.json"
+fichero = "/Users/danielortega/Documents/Proyectos/MamutHack/MamutHack_AnalizadorDominios/diccionario2.csv"
+fichero2 = "/Users/danielortega/Documents/Proyectos/MamutHack/MamutHack_AnalizadorDominios/test.json"
 #csv2Dict(fichero)
 palabrasPagina = []
 DiccEnArr = []
@@ -69,8 +70,8 @@ DiccEnArr = csv2Dict(fichero)
 index = 0
 for palabra in palabrasPaginas:
     if palabra in DiccEnArr:
-        index+=int(DiccEnArr.get(palabra))
-print(index)
+        #index+=int(DiccEnArr.get(palabra))
+        print(palabra)
         #intersection
 
 
