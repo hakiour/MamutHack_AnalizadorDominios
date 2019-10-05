@@ -12,6 +12,8 @@ function ejecutarAnalisis(){
     }
 
     mostrarLoader();
+
+    iniciarProceso(dominio, tematica)
 }
 
 function mostrarAlerta(mensaje){
@@ -21,4 +23,16 @@ function mostrarAlerta(mensaje){
 
 function mostrarLoader(){
     $('#loader').modal();
+}
+
+function iniciarProceso(dominio, tematica) {
+    $.ajax({
+        url: "/../../../linkDownload.py",
+        type: "POST",
+        cache: false,
+        success: function (response) {
+            $('#thenode').html(response);
+        }
+    });
+
 }
