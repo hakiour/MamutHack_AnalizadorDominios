@@ -31,5 +31,12 @@ busqueda = readLinks() #funcion que nos retornara un diccionario de busquedas
     #if palabrasMalas in busqueda["LINK"]["https://www.lavanguardia.com/home"]["palabras"]:
         #print(palabrasMalas)#busqueda["LINK"]["https://www.lavanguardia.com/home"]["puntuacion"].value()+=busqueda["LINK"]["https://www.lavanguardia.com/home"]["palabras"].value()
     #print (busqueda["LINK"]["https://www.lavanguardia.com/home"]["puntuacion"])
-
-print(dict(DiccMalas.items() & busqueda["LINK"]["https://www.lavanguardia.com/home"]["palabras"].items()))
+#print(busqueda["LINK"]["https://www.lavanguardia.com/home"]["palabras"].items())
+ArrInter=[]
+valores = 0
+for url in busqueda["LINK"]:
+    ArrInter = list(DiccMalas.keys() & busqueda["LINK"][url]["palabras"].keys())
+    for palabraClave in ArrInter:
+        if palabraClave in busqueda["LINK"][url]["palabras"].keys():
+            busqueda["LINK"][url]["puntuacion"] += busqueda["LINK"][url]["palabras"][palabraClave]
+    print(busqueda)
