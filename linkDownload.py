@@ -3,6 +3,7 @@
 
 from urllib.request import Request, urlopen
 import re
+import cgi
 from bs4 import BeautifulSoup
 import json
 import sys
@@ -53,13 +54,19 @@ def urlToList(url, dominio):
 def readLinks():
 
 	rutaGoogle = 'http://www.google.com/search?btnG=1&q=site%3A'
-	parametros = sys.argv
+	datosForm = cgi.FieldStorage()
 
-	if len(parametros) == 3:
-		url = parametros[1]
-		urlSrc= "".join(parametros[1])
-		url = (url.split("//"))[1]
-		tema = parametros[2]
+	if datosForm:
+		url = datosForm["url"]
+		arrayUrl = (url.split("//"))
+		if len(arrayUrl) == 2: 
+			url = arrayUrl[1]
+		else: 
+			print('Error url')
+			return 0
+
+		tema = datosForm["tema"]
+		
 		pagina = requests.get(rutaGoogle + url)
 		tree = html.fromstring(pagina.content)
 		arrayUrls = []
