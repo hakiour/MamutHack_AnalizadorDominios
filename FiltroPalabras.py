@@ -9,7 +9,6 @@ This is a temporary script file.
 
 '''
 import csv
-import numpy as np
 import json
 ##leemos el fichero y transformamos en un array
 """dataArr = []
@@ -53,11 +52,9 @@ def csv2Dict(fichero):
 
            
 def json2Array(fichero2):
-    array = []
     with open(fichero2, "r") as read_file:
         objeto = json.load(read_file)
-        array = objeto["lista"]
-    return array
+    return objeto
 
 
 fichero = "/Users/danielortega/Documents/Proyectos/MamutHack/MamutHack_AnalizadorDominios/diccionario2.csv"
