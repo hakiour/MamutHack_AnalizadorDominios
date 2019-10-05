@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Terrassa Haash</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="assets/css/Article-List.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Grid.css">
+</head>
+
+<body>
+    <div class="header-blue" style="padding-bottom: 74px;">
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+            <div class="container-fluid"><a class="navbar-brand" href="#">Terrassa Hash</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse"
+                    id="navcol-1">
+                    <ul class="nav navbar-nav"></ul>
+                    <form class="form-inline mr-auto" target="_self">
+                        <div class="form-group"><label for="search-field"></label></div>
+                    </form><span class="navbar-text"> <a class="login" href="#">Estadísticas</a></span></div>
+            </div>
+        </nav>
+        <div class="modal fade" role="dialog" tabindex="-1" id="loader">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Procesando</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <div class="modal-body d-xl-flex justify-content-xl-center align-items-xl-center">
+                        <div class="text-center d-xl-flex justify-content-xl-center align-items-xl-center loader"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" role="dialog" tabindex="-1" id="alerta">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">¡Ups!</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <div class="modal-body" id="alerta-mensaje">
+                        <p>Algo ha fallado.</p>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Cerrar</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="container hero">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-xl-10 offset-xl-1">
+                    <h1>Lucha contra los discursos de odio.</h1>
+                    <p>¿Crees que una página incita al odio? ¡Pongamos justicia!, Analiza una página a través de nuestro sistema y verifica si promueve cualquier tipo de violencia relacionada con la temática seleccionada.</p>
+                    <h4 style="color: white;">Selecciona una temática</h4>
+                    <div class="form-group"><div>
+    <select multiple class="form-control" id="tematica">
+      <option>Racismo</option>
+      <option>Violencia de genero</option>
+      <option>Homofobia</option>
+    </select>
+</div></div>
+                    <h4 style="color: white;">Introduce el dominio a analizar</h4>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">Dominio</span></div><input class="form-control" type="url" id="dominio">
+                        <div class="input-group-append"><button class="btn btn-primary" id="analizar" type="button">Analizar</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-xl-12 item text">
+                        <h3>Sobre nosotros</h3>
+                        <p>Terrassa Haash es un proyecto nacido en la MamutHack 2019 para realizar el reto de Everis de detección automática de acoso cibernético y discruso de odio.</p>
+                    </div>
+                </div>
+                <p class="copyright">Terrassa Haash © 2019</p>
+            </div>
+        </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/analizador.js"></script>
+</body>
+
+</html>
