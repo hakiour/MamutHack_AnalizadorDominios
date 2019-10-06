@@ -20,7 +20,7 @@ def obtenerListadoDominios( maximoLineas):
 
     resultado = []
     for item in mycursor:
-        resultado.append(item);
+        resultado.append(item)
     return resultado
 
 resultado = {}
