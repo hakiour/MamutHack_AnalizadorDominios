@@ -1,5 +1,18 @@
-function getAjax(url,success){
-    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    xhr.open('GET', url);
-
+function getAjax() {
+    $.ajax({
+        url: "../../obtenerListadoDominios.py",
+        type: "GET",
+        success: function (response) {
+            alert(response);
+            var obj = JSON.parse(response);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+        }
+    })
 }
+
+
+
+getAjax();

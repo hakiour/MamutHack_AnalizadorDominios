@@ -51,7 +51,7 @@ def urlToList(url, dominio):
 	return DicLink
 
 
-def readLinks(url):
+def readLinks(url, tema):
 	rutaGoogle = 'http://www.google.com/search?btnG=1&q=site%3A'
 	pagina = requests.get(rutaGoogle + url)
 	tree = html.fromstring(pagina.content)
@@ -64,14 +64,14 @@ def readLinks(url):
 	
 
 	busqueda = {
-		"DOMINI" : urlSrc,
+		"DOMINI" : url,
 		"TEMATICA" : tema,
 		"LINKS" : {}
 	}
 
 	for link in arrayUrls[:-1]:
-		print("reading link: "+ link)
-		dicPalabrasLink = urlToList(link, urlSrc)
+		#print("reading link: "+ link)
+		dicPalabrasLink = urlToList(link, url)
 		busqueda["LINKS"][link]=dicPalabrasLink[link]				#añadimos entrada de url: palabras.
 
 	return busqueda

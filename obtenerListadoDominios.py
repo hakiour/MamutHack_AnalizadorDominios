@@ -1,4 +1,4 @@
-#!C:\Users\localadmin\Anaconda3\python.exe
+#!/usr/bin/env python3
 print("Content-Type: text/html\n")
 import mysql.connector
 import json

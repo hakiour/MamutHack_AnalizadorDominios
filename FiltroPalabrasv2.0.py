@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#!C:/Users/sergi/AppData/Local/Programs/Python/Python37-32/python.exe
 
 import csv
 import sys
 import linkDownload as ld
+import cgi
 
 def csv2Dict(fichero):
     with open(fichero) as f:
@@ -24,23 +24,20 @@ def CalculaScore():
         if len(arrayUrl) == 2: 
             url = arrayUrl[1]
         else: 
-            print('Error url')
-            return 0
+            return 'Error url'
 
         tema = datosForm["tema"].value
 
         DicOdio = csv2Dict(tema+".csv") #'/Dicts/'+'
-        busqueda = ld.readLinks(url)
+        busqueda = ld.readLinks(url, tema)
         ArrInter=[]
         for url in busqueda["LINKS"]:
-            ArrInter = list(DiccMalas.keys() & busqueda["LINKS"][url]["palabras"].keys())
+            ArrInter = list(DicOdio.keys() & busqueda["LINKS"][url]["palabras"].keys())
             for palabraClave in ArrInter:
                 if palabraClave in busqueda["LINKS"][url]["palabras"].keys():
                     busqueda["LINKS"][url]["puntuacion"] += busqueda["LINKS"][url]["palabras"][palabraClave]
-
         return busqueda
     else:
-        print("Input error")
-        return None
-
-CalculaScore()
+        return "Input error"
+        
+print(CalculaScore())
