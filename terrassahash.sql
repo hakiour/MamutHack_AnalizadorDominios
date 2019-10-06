@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2019 a las 00:41:32
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Host: 127.0.0.1
+-- Generation Time: Oct 06, 2019 at 02:02 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,28 +19,40 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `terrassahash`
+-- Database: `terrassahash`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `dominio`
+-- Table structure for table `dominio`
 --
 
 CREATE TABLE `dominio` (
   `idDominio` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ipUsuario` varchar(45) NOT NULL,
   `nombreDominio` varchar(100) NOT NULL,
   `tematica` varchar(100) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp()
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dominio`
+--
+
+INSERT INTO `dominio` (`idDominio`, `fecha`, `ipUsuario`, `nombreDominio`, `tematica`, `created`) VALUES
+(1, '2019-10-05 22:44:48', '192.168.1.9', 'lavanguardia.com', 'racismo', '2019-10-05 22:44:48'),
+(2, '2019-10-05 22:45:07', '192.168.1.9', 'lavanguardia.com', 'racismo', '2019-10-05 22:45:07'),
+(3, '2019-10-05 22:46:48', '192.168.1.9', 'facebook.com', 'racismo', '2019-10-05 22:46:48'),
+(4, '2019-10-05 22:46:48', '192.168.1.9', 'twitter.com', 'racismo', '2019-10-05 22:46:48'),
+(5, '2019-10-05 22:46:48', '192.168.1.9', 'mamuthack.com', 'racismo', '2019-10-05 22:46:48'),
+(6, '2019-10-05 22:46:48', '192.168.1.9', 'https://www.forocoches.com/foro/showthread.php?t=6539653&page=2', 'racismo', '2019-10-05 22:46:48');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `link`
+-- Table structure for table `link`
 --
 
 CREATE TABLE `link` (
@@ -49,10 +61,18 @@ CREATE TABLE `link` (
   `indice` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `link`
+--
+
+INSERT INTO `link` (`idLink`, `idDominio`, `indice`) VALUES
+(1, 1, 1),
+(2, 2, 2);
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `palabras`
+-- Table structure for table `palabras`
 --
 
 CREATE TABLE `palabras` (
@@ -64,62 +84,70 @@ CREATE TABLE `palabras` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Índices para tablas volcadas
+-- Dumping data for table `palabras`
+--
+
+INSERT INTO `palabras` (`idPalabras`, `Palabra`, `tipo`, `numeroVeces`, `idLink`) VALUES
+(1, 'puto', '1', 23, 1),
+(2, 'negrata', '2', 12, 2);
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `dominio`
+-- Indexes for table `dominio`
 --
 ALTER TABLE `dominio`
   ADD PRIMARY KEY (`idDominio`);
 
 --
--- Indices de la tabla `link`
+-- Indexes for table `link`
 --
 ALTER TABLE `link`
   ADD PRIMARY KEY (`idLink`);
 
 --
--- Indices de la tabla `palabras`
+-- Indexes for table `palabras`
 --
 ALTER TABLE `palabras`
   ADD PRIMARY KEY (`idPalabras`),
   ADD KEY `fkIdLink` (`idLink`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `dominio`
+-- AUTO_INCREMENT for table `dominio`
 --
 ALTER TABLE `dominio`
-  MODIFY `idDominio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDominio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `link`
+-- AUTO_INCREMENT for table `link`
 --
 ALTER TABLE `link`
-  MODIFY `idLink` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idLink` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `palabras`
+-- AUTO_INCREMENT for table `palabras`
 --
 ALTER TABLE `palabras`
-  MODIFY `idPalabras` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPalabras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `link`
+-- Constraints for table `link`
 --
 ALTER TABLE `link`
   ADD CONSTRAINT `fkIdDominio` FOREIGN KEY (`idLink`) REFERENCES `dominio` (`idDominio`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `palabras`
+-- Constraints for table `palabras`
 --
 ALTER TABLE `palabras`
   ADD CONSTRAINT `fkIdLink` FOREIGN KEY (`idLink`) REFERENCES `link` (`idLink`);
