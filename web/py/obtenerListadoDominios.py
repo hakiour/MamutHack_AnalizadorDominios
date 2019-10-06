@@ -1,17 +1,9 @@
-#!/usr/bin/env python3
+#!C:\Users\localadmin\Anaconda3\python.exe
 print("Content-Type: text/html\n")
-import mysql.connector
+import conexion
 import json
 
-MAXIMO_DOMINIOS_A_LISTAR = 4
-
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="terrassahash",
-  passwd="HOMzOnzFaoBqvSk7",
-  db="terrassahash",
-  port=3306
-)
+mydb = conexion.iniciarBD()
 
 def obtenerListadoDominios( maximoLineas):
     "Obtenemos los ultimos analisis realizados en nuestra bd"
@@ -20,11 +12,11 @@ def obtenerListadoDominios( maximoLineas):
 
     resultado = []
     for item in mycursor:
-        resultado.append(item)
+        resultado.append(item);
     return resultado
 
 resultado = {}
 
-resultado["respuesta"] = obtenerListadoDominios(MAXIMO_DOMINIOS_A_LISTAR)
+resultado["respuesta"] = obtenerListadoDominios(4)
 
 print(json.dumps(resultado))

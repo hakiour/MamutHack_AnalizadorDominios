@@ -1,5 +1,4 @@
-#!C:/Users/sergi/AppData/Local/Programs/Python/Python37-32/python.exe
-print("Content-Type: text/html\n")
+#!C:\Users\localadmin\Anaconda3\python.exe
 
 from urllib.request import Request, urlopen
 import re
@@ -62,7 +61,6 @@ def readLinks(url, tema):
 		if "/url?q" in ruta:
 			arrayUrls.append(elementos.get("href").replace("/url?q=",""))#"http://www.google.com"+elementos.get("href"))
 	
-
 	busqueda = {
 		"DOMINI" : url,
 		"TEMATICA" : tema,
@@ -71,7 +69,7 @@ def readLinks(url, tema):
 
 	for link in arrayUrls[:-1]:
 
-		print("reading link: "+ link)
+		#print("reading link: "+ link)
 		dicPalabrasLink = urlToList(link, url)
 		busqueda["LINKS"][link]=dicPalabrasLink				#añadimos entrada de url: palabras.
 
