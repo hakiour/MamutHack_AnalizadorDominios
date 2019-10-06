@@ -27,7 +27,7 @@ function mostrarLoader(){
 
 function iniciarProceso(dominio, tematica) {
     $.ajax({
-        url: "../FiltroPalabrasv2.0.py",
+        url: "py/iniciarBusqueda.py",
         type: "POST",
         timeout: 60000,
         async: true,

@@ -1,3 +1,4 @@
+#!C:\Users\localadmin\Anaconda3\python.exe
 # -*- coding: utf-8 -*-
 
 import mysql.connector
