@@ -11,13 +11,9 @@ from lxml import html
 import requests
 from collections import Counter
 
-#Abrir pagina web i adquirir texto
-url = "https://www.freecodecamp.org/news/my-first-python-project-converting-a-disorganized-text-file-into-a-neatly-structured-csv-file-21f4c6af502d"
-file = 'test'
 
 
-
-def urlToList(url, fileName, dominio):
+def urlToList(url, dominio):
 	req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
 	webpage = urlopen(req).read()
 	soup = BeautifulSoup(webpage, features="lxml")
@@ -33,21 +29,26 @@ def urlToList(url, fileName, dominio):
 	lines = (line.strip() for line in text.splitlines())
 	chunks = (phrase.strip() for line in lines for phrase in line.split("  "))	# break multi-headlines into a line each
 	text = '\n'.join(chunk for chunk in chunks if chunk)	# drop blank lines
+	text = re.sub('[!@#$1234567890"]', '', text)
+	text = re.sub('[-_]', ' ', text)
+
 	
 	#trabajaremos siempre con las palabras en minúsculas para evitar possibles errores de búsqueda
 	text = text.lower()
-	counts = Counter(text.split())
-	x={
-		"Dominio" : dominio,
-		"Link": url,
-		"Palabras": counts
+	counts = Counter(text.split())		#calculamos frecuencia de las palabras
+
+	for word in list(counts.keys()):					#utilizamos list() para evitar runtime error al iterar sobre keys()
+		if(len(word)<4 or len(word)>10):
+			del counts[word]
+
+	#creamos un diccionario con el link como llave y la lista (otro dic en vd) de palabras y su freq
+	DicLink={
+		url : counts,
+		"SCORE" : 0
 	}
 
-	#Passamos el texto como lista de palabras en un fichero
-	#with open(fileName+'.json', 'w') as filehandle:
-	#    json.dump(x, filehandle, ensure_ascii = False)
 
-	return True
+	return DicLink
 
 
 def readLinks():
@@ -76,7 +77,12 @@ def readLinks():
 			if "/url?q" in ruta:
 				arrayUrls.append(elementos.get("href").replace("/url?q=",""))#"http://www.google.com"+elementos.get("href"))
 		
-		i=0
+
+		busqueda = {
+			"DOMINI" : urlSrc,
+			"TEMATICA" : tema,
+			"LINKS" : {}
+		}
 
 		for link in arrayUrls[:-1]:
 			print("reading link: "+ link)
@@ -86,6 +92,7 @@ def readLinks():
 		
 	else:
 		print('Error input')
+		return None
 
 #url = "https://www.elmundo.es/pais-vasco/2019/07/10/5d25f9af21efa0c0578b456f.html"
 #urlToList(url,file)
