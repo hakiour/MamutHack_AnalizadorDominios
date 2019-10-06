@@ -17,7 +17,8 @@ datosForm = cgi.FieldStorage()
 idDominio = datosForm["dominio"].value
 
 mycursor = mydb.cursor()
-mycursor.execute("SELECT Palabra, SUM(numeroVeces) as numeroVeces FROM dominio JOIN link ON dominio.idDominio = link.idDominio JOIN palabras ON link.idLink = palabras.idLink WHERE dominio.idDominio = " + idDominio + " GROUP BY Palabra")
+mycursor.execute("SELECT Palabra, FORMAT(FLOOR(SUM(numeroVeces)),0) as numeroVeces FROM dominio JOIN link ON dominio.idDominio = link.idDominio" +
+" JOIN palabras ON link.idLink = palabras.idLink WHERE dominio.idDominio = " + idDominio + " GROUP BY Palabra")
 
 resultado = []
 

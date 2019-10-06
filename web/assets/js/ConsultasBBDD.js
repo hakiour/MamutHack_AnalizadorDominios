@@ -65,7 +65,7 @@ function crearGraficaDominio(arrayDatos) {
     data = {
         datasets: [{
             data: valores,
-            backgroundColor: coloresGrafica
+            backgroundColor: coloresGrafica 
         }],
         labels: labelsValores
     };
@@ -88,6 +88,9 @@ function crearGraficaPalabras(arrayDatos) {
         valores.push(arrayDatos[index][1])
     }   
 
+    labelsValores.push("")
+    valores.push("0")
+
     data = {
         datasets: [{
             data: valores,
@@ -99,7 +102,7 @@ function crearGraficaPalabras(arrayDatos) {
 
     new Chart(ctx, {
         data: data,
-        type: 'bar',
+        type: 'bar'
     });
 }
 
