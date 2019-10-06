@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Oct  5 23:54:38 2019
 
-@author: danielortega
-"""
 import csv
+import sys
+import linkDownload as ld
 
 def csv2Dict(fichero):
     with open(fichero) as f:
@@ -15,28 +13,34 @@ def csv2Dict(fichero):
     f.close()
     return nuevo
 
-def readLinks():
-    busq = {"DOM": "https://www.lavanguardia.com/",
-            "LINK": {"https://www.lavanguardia.com/home":{"palabras":{"negro":2,"matar":4,"suicidio":8},"puntuacion":0},
-                     "https://www.lavanguardia.com/index":{"palabras":{"dispara":2,"paliza":4,"nazi":8},"puntuacion":0}},
-            "TEMATICA":"racismo"}
-    return busq
 
-fichero = "/Users/danielortega/Documents/Proyectos/MamutHack/MamutHack_AnalizadorDominios/diccionario2.csv"
-fichero2 = "/Users/danielortega/Documents/Proyectos/MamutHack/MamutHack_AnalizadorDominios/test.json"
+def CalculaScore():
 
-DiccMalas = csv2Dict(fichero)
-busqueda = readLinks() #funcion que nos retornara un diccionario de busquedas
-#for palabrasMalas in DiccMalas:
-    #if palabrasMalas in busqueda["LINK"]["https://www.lavanguardia.com/home"]["palabras"]:
-        #print(palabrasMalas)#busqueda["LINK"]["https://www.lavanguardia.com/home"]["puntuacion"].value()+=busqueda["LINK"]["https://www.lavanguardia.com/home"]["palabras"].value()
-    #print (busqueda["LINK"]["https://www.lavanguardia.com/home"]["puntuacion"])
-#print(busqueda["LINK"]["https://www.lavanguardia.com/home"]["palabras"].items())
-ArrInter=[]
-valores = 0
-for url in busqueda["LINK"]:
-    ArrInter = list(DiccMalas.keys() & busqueda["LINK"][url]["palabras"].keys())
-    for palabraClave in ArrInter:
-        if palabraClave in busqueda["LINK"][url]["palabras"].keys():
-            busqueda["LINK"][url]["puntuacion"] += busqueda["LINK"][url]["palabras"][palabraClave]
-    print(busqueda)
+    datosForm = cgi.FieldStorage()
+
+    if datosForm:
+        url = datosForm["url"].value
+        arrayUrl = (url.split("//"))
+        if len(arrayUrl) == 2: 
+            url = arrayUrl[1]
+        else: 
+            print('Error url')
+            return 0
+
+        tema = datosForm["tema"].value
+
+        DicOdio = csv2Dict(tema+".csv") #'/Dicts/'+'
+        busqueda = ld.readLinks(url)
+        ArrInter=[]
+        for url in busqueda["LINKS"]:
+            ArrInter = list(DiccMalas.keys() & busqueda["LINKS"][url]["palabras"].keys())
+            for palabraClave in ArrInter:
+                if palabraClave in busqueda["LINKS"][url]["palabras"].keys():
+                    busqueda["LINKS"][url]["puntuacion"] += busqueda["LINKS"][url]["palabras"][palabraClave]
+
+        return busqueda
+    else:
+        print("Input error")
+        return None
+
+CalculaScore()
