@@ -103,3 +103,7 @@ div {
   }
 }
 
+.pointer {
+  cursor: pointer;
+}
+
