@@ -18,29 +18,31 @@ def CalculaScore():
 
     datosForm = cgi.FieldStorage()
 
-    #if datosForm:
-    #    url = datosForm["url"].value
-    #    arrayUrl = (url.split("//"))
-    #    if len(arrayUrl) == 2: 
-    #        url = arrayUrl[1]
-    #    else: 
-    #        return 'Error url'
+    if datosForm:
+        url = datosForm["url"].value
+        arrayUrl = (url.split("//"))
+        if len(arrayUrl) == 2: 
+            url = arrayUrl[1]
+        else: 
+            return 'Error url'
 
-    #    tema = datosForm["tema"].value
+        tema = datosForm["tema"].value
 
-    tema = 'racismo'
-    url = "https://www.lavanguardia.com"
+    #url = "https://www.lavanguardia.com/"
+    #tema="racismo"
 
     DicOdio = csv2Dict(tema+".csv") #'/Dicts/'+'
+    print(DicOdio)
     busqueda = ld.readLinks(url, tema)
     ArrInter=[]
-
-    for url in busqueda["LINKS"]:
-        ArrInter = list(DicOdio.keys() & busqueda["LINKS"][url]["PALABRAS"].keys())
-        print(ArrInter)
+    for link in busqueda["LINKS"]:
+        objLink = busqueda["LINKS"][link]
+        ArrInter = list(DicOdio.keys() & objLink[link].keys())
         for palabraClave in ArrInter:
-            if palabraClave in busqueda["LINKS"][url]["PALABRAS"].keys():
-                busqueda["LINKS"][url]["PUNTUACION"] += busqueda["LINKS"][url]["PALABRAS"][palabraClave]
+            objLink["PUNTUACION"] += objLink[link][palabraClave]  
+
+        #paraulesOrd = sorted(objLink[link].items(), key=lambda kv: kv[1])
+        #objLink[link] = collections.OrderedDict(paraulesOrd)       
     return busqueda
 
 

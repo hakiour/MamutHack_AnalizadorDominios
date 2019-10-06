@@ -43,7 +43,7 @@ def urlToList(url, dominio):
 
 	#creamos un diccionario con el link como llave y la lista (otro dic en vd) de palabras y su freq
 	DicLink={
-		"PALABRAS" : palabras,
+		url : palabras,
 		"PUNTUACION" : 0
 	}
 
