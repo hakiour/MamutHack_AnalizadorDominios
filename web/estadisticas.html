@@ -70,7 +70,7 @@
                     <div class="row">
                         <div class="col-xl-9 offset-xl-2">
                             <ul class="list-inline">
-                                <li class="list-inline-item pointer" style="color: rgb(255,255,255);" onclick="elegirDominio(1, 'www.uab.cat')">www.uab.cat</li>
+                                <li class="list-inline-item pointer" style="color: rgb(255,255,255);" onclick="elegirDominio(1, 'lavanguardia.com')">lavanguardia.com</li>
                                 <li class="list-inline-item pointer" style="color: rgb(255,255,255);" onclick="elegirDominio(2, 'www.mamuthack.com')">www.mamuthack.com</li>
                                 <li class="list-inline-item pointer" style="color: rgb(255,255,255);" onclick="elegirDominio(3, 'reddit.com')">reddit.com</li>
                                 <li class="list-inline-item pointer" style="color: rgb(255,255,255);" onclick="elegirDominio(4, 'twitter.com')">twitter.com</li>
@@ -99,7 +99,10 @@
             <div class="row">
                 <div class="col-xl-5 mx-auto">
                     <h2 id="tituloDominioBuscado" class="text-center"></h2>
-                    <canvas id="graficaLinksBuscado" width="50" height="50"></canvas>
+                    <div class="row">
+                            <canvas id="graficaLinksBuscado" width="50" height="50"></canvas>
+                            <canvas id="graficaPalabrasBuscado" width="50" height="50"></canvas>
+                    </div>
                 </div>
             </div>
         </div>

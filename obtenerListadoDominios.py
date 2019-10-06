@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!C:/Users/sergi/AppData/Local/Programs/Python/Python37-32/python.exe
 print("Content-Type: text/html\n")
 import mysql.connector
 import json
@@ -7,8 +7,8 @@ MAXIMO_DOMINIOS_A_LISTAR = 4
 
 mydb = mysql.connector.connect(
   host="localhost",
-  user="terrassahash",
-  passwd="HOMzOnzFaoBqvSk7",
+  user="root",
+  passwd="",
   db="terrassahash",
   port=3306
 )

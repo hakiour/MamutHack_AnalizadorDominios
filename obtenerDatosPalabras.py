@@ -5,8 +5,6 @@ import mysql.connector
 import json
 import cgi
 
-MAXIMO_DOMINIOS_A_LISTAR = 4
-
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
@@ -19,7 +17,7 @@ datosForm = cgi.FieldStorage()
 idDominio = datosForm["dominio"].value
 
 mycursor = mydb.cursor()
-mycursor.execute("SELECT trim(nombreLink) as nombreLink, indice FROM link WHERE idDominio = " + idDominio)
+mycursor.execute("SELECT Palabra, SUM(numeroVeces) as numeroVeces FROM dominio JOIN link ON dominio.idDominio = link.idDominio JOIN palabras ON link.idLink = palabras.idLink WHERE dominio.idDominio = " + idDominio + " GROUP BY Palabra")
 
 resultado = []
 
@@ -28,6 +26,6 @@ for item in mycursor:
 
 jsonString = {}
 
-jsonString["respuestaLinks"] = resultado
+jsonString["respuestaPalabras"] = resultado
 
 print(json.dumps(jsonString))
