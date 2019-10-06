@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Grid.css">
+    <link rel="stylesheet" href="assets/css/Chart.min.css">
 </head>
 
 <body>
@@ -68,7 +69,11 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-9 offset-xl-2">
-                            <ul id="ultimas_paginas" class="list-inline">
+                            <ul class="list-inline">
+                                <li class="list-inline-item pointer" style="color: rgb(255,255,255);" onclick="elegirDominio(1, 'lavanguardia.com')">lavanguardia.com</li>
+                                <li class="list-inline-item pointer" style="color: rgb(255,255,255);" onclick="elegirDominio(2, 'www.mamuthack.com')">www.mamuthack.com</li>
+                                <li class="list-inline-item pointer" style="color: rgb(255,255,255);" onclick="elegirDominio(3, 'reddit.com')">reddit.com</li>
+                                <li class="list-inline-item pointer" style="color: rgb(255,255,255);" onclick="elegirDominio(4, 'twitter.com')">twitter.com</li>
                             </ul>
                         </div>
                     </div>
@@ -92,7 +97,13 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col"></div>
+                <div class="col-xl-7 mx-auto">
+                    <h2 id="tituloDominioBuscado" class="text-center"></h2>
+                    <div class="row">
+                            <canvas id="graficaLinksBuscado" width="50" height="50" class="col-xs-5"></canvas>
+                            <canvas id="graficaPalabrasBuscado" width="50" height="50" class="col-xs-5"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -111,8 +122,8 @@
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/estadisticas.js"></script>
-    
+    <script src="assets/js/ConsultasBBDD.js"></script>
+    <script src="assets/js/Chart.min.js"></script>
 </body>
 
 </html>
