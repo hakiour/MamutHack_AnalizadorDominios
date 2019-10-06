@@ -70,9 +70,15 @@ def readLinks(url, tema):
 	}
 
 	for link in arrayUrls[:-1]:
+<<<<<<< HEAD
 		print("reading link: "+ link)
 		dicPalabrasLink = urlToList(link, url)
 		busqueda["LINKS"][link]=dicPalabrasLink				#añadimos entrada de url: palabras.
+=======
+		#print("reading link: "+ link)
+		dicPalabrasLink = urlToList(link, url)
+		busqueda["LINKS"][link]=dicPalabrasLink[link]				#añadimos entrada de url: palabras.
+>>>>>>> master
 
 	print(busqueda)
 	return busqueda

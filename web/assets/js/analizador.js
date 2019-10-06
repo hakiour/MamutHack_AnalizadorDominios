@@ -29,6 +29,8 @@ function iniciarProceso(dominio, tematica) {
     $.ajax({
         url: "../FiltroPalabrasv2.0.py",
         type: "POST",
+        timeout: 60000,
+        async: true,
         data: {"url": dominio, "tema": tematica},
         success: function (response) {
             alert(response)
