@@ -29,7 +29,7 @@ def urlToList(url, dominio):
 	lines = (line.strip() for line in text.splitlines())
 	chunks = (phrase.strip() for line in lines for phrase in line.split("  "))	# break multi-headlines into a line each
 	text = '\n'.join(chunk for chunk in chunks if chunk)	# drop blank lines
-	text = re.sub('[!@#$1234567890"]', '', text)
+	text = re.sub('[!@#$1234567890?¿¡."]', '', text)
 	text = re.sub('[-_]', ' ', text)
 
 	
@@ -43,7 +43,7 @@ def urlToList(url, dominio):
 
 	#creamos un diccionario con el link como llave y la lista (otro dic en vd) de palabras y su freq
 	DicLink={
-		url : palabras,
+		"PALABRAS" : palabras,
 		"PUNTUACION" : 0
 	}
 
@@ -70,17 +70,12 @@ def readLinks(url, tema):
 	}
 
 	for link in arrayUrls[:-1]:
-<<<<<<< HEAD
+
 		print("reading link: "+ link)
 		dicPalabrasLink = urlToList(link, url)
 		busqueda["LINKS"][link]=dicPalabrasLink				#añadimos entrada de url: palabras.
-=======
-		#print("reading link: "+ link)
-		dicPalabrasLink = urlToList(link, url)
-		busqueda["LINKS"][link]=dicPalabrasLink[link]				#añadimos entrada de url: palabras.
->>>>>>> master
 
-	print(busqueda)
+
 	return busqueda
 	
 
