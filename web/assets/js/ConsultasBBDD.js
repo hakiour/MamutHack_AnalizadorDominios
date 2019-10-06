@@ -1,6 +1,6 @@
 function getAjax() {
     $.ajax({
-        url: "../ObtenerListadoDominios.py",
+        url: "../../obtenerListadoDominios.py",
         type: "GET",
         success: function (response) {
             alert(response);
@@ -15,3 +15,4 @@ function getAjax() {
 
 
 
+getAjax();
