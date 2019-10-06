@@ -28,8 +28,9 @@ def CalculaScore():
 
         tema = datosForm["tema"].value
 
+    #Paginas de ejemplo
     #url = "https://www.tripadvisor.es/ShowTopic-g187427-i42-k3947180-Racismo_en_Espana_La_pregunta_mas_incoherente_que_eh_hecho-Spain.html"
-    #url = "https://www.lavanguardia.com"
+    url = "https://www.lavanguardia.com"
     tema="racismo"
 
     DicOdio = csv2Dict(tema+".csv") #'/Dicts/'+'
@@ -42,9 +43,8 @@ def CalculaScore():
         objLink = busqueda["LINKS"][link]
         ArrInter = list(DicOdio.keys() & objLink[link].keys())
         for palabraClave in ArrInter:
-            objLink["PUNTUACION"] += objLink[link][palabraClave]  
-        #paraulesOrd = sorted(objLink[link].items(), key=lambda kv: kv[1])
-        #objLink[link] = collections.OrderedDict(paraulesOrd)       
+            objLink["PUNTUACION"] += objLink[link][palabraClave]
+
     return busqueda
 
 resultado = CalculaScore()
@@ -89,7 +89,4 @@ for link in resultado["LINKS"]:
         mydb.commit()
         mycursor.close()
 
-
-#sql = "INSERT INTO LINK (nombreLink,indice) VALUES (%s,%d)"
-#val = resultado["LINKS"]
-print("Valores de Dominio y Tematica insertados")
+print("Ok")

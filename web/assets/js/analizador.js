@@ -33,7 +33,7 @@ function iniciarProceso(dominio, tematica) {
         async: true,
         data: {"url": dominio, "tema": tematica},
         success: function (response) {
-            alert(response)
+            window.location.href = "estadisticas.html";
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status);

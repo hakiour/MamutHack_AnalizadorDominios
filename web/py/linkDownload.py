@@ -37,7 +37,7 @@ def urlToList(url, dominio):
 	palabras = dict(Counter(text.split()))		#calculamos frecuencia de las palabras
 
 	for word in list(palabras.keys()):					#utilizamos list() para evitar runtime error al iterar sobre keys()
-		if(len(word)<4 or len(word)>10 or palabras[word] <= 2):
+		if(len(word)<4 or len(word)>10 or palabras[word] < 2):
 			del palabras[word]
 
 	#creamos un diccionario con el link como llave y la lista (otro dic en vd) de palabras y su freq

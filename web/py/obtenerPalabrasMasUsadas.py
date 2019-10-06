@@ -3,7 +3,7 @@ print("Content-Type: text/html\n")
 import json
 import conexion
 
-MAXIMOS_PALABRAS_A_LISTAR = 4
+MAXIMOS_PALABRAS_A_LISTAR = 12
 
 mydb = conexion.iniciarBD()
 
