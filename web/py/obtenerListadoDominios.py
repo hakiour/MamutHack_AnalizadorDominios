@@ -8,7 +8,7 @@ mydb = conexion.iniciarBD()
 def obtenerListadoDominios( maximoLineas):
     "Obtenemos los ultimos analisis realizados en nuestra bd"
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT nombreDominio FROM dominio ORDER BY fecha DESC LIMIT " + str(maximoLineas))
+    mycursor.execute("SELECT nombreDominio,idDominio FROM dominio ORDER BY fecha DESC LIMIT " + str(maximoLineas))
 
     resultado = []
     for item in mycursor:

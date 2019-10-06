@@ -28,7 +28,7 @@ def CalculaScore():
 
         tema = datosForm["tema"].value
 
-    url = "https://www.tripadvisor.es/ShowTopic-g187427-i42-k3947180-Racismo_en_Espana_La_pregunta_mas_incoherente_que_eh_hecho-Spain.html"
+    #url = "https://www.tripadvisor.es/ShowTopic-g187427-i42-k3947180-Racismo_en_Espana_La_pregunta_mas_incoherente_que_eh_hecho-Spain.html"
     #url = "https://www.lavanguardia.com"
     tema="racismo"
 
