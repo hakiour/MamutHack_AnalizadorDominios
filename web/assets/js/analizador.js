@@ -27,12 +27,16 @@ function mostrarLoader(){
 
 function iniciarProceso(dominio, tematica) {
     $.ajax({
-        url: "/../../../linkDownload.py",
+        url: "./linkDownload.py",
         type: "POST",
-        cache: false,
+        data:{ "url":dominio, "tema": tematica},
         success: function (response) {
-            $('#thenode').html(response);
-        }
+            alert(response)
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+          }
     });
 
 }
