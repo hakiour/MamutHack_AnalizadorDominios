@@ -13,7 +13,7 @@ function ejecutarAnalisis(){
 
     mostrarLoader();
 
-    iniciarProceso(dominio, tematica)
+    iniciarProceso(dominio.value, tematica.value)
 }
 
 function mostrarAlerta(mensaje){
@@ -27,9 +27,9 @@ function mostrarLoader(){
 
 function iniciarProceso(dominio, tematica) {
     $.ajax({
-        url: "./linkDownload.py",
+        url: "../linkDownload.py",
         type: "POST",
-        data:{ "url":dominio, "tema": tematica},
+        data: {"url": dominio, "tema": tematica},
         success: function (response) {
             alert(response)
         },
