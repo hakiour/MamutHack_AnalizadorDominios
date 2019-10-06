@@ -51,13 +51,11 @@ def urlToList(url, fileName, dominio):
 
 
 def readLinks():
-
 	rutaGoogle = 'http://www.google.com/search?btnG=1&q=site%3A'
 	datosForm = cgi.FieldStorage()
 
 	if datosForm:
-		print("adasd")
-		url = datosForm["url"]
+		url = datosForm["url"].value
 		arrayUrl = (url.split("//"))
 		if len(arrayUrl) == 2: 
 			url = arrayUrl[1]
@@ -65,7 +63,9 @@ def readLinks():
 			print('Error url')
 			return 0
 
-		tema = datosForm["tema"]
+		print(url)
+
+		tema = datosForm["tema"].value
 		
 		pagina = requests.get(rutaGoogle + url)
 		tree = html.fromstring(pagina.content)
@@ -83,12 +83,12 @@ def readLinks():
 			urlToList(link, "test"+str(i), url)
 			i+=1
 		
+		
 	else:
 		print('Error input')
 
 #url = "https://www.elmundo.es/pais-vasco/2019/07/10/5d25f9af21efa0c0578b456f.html"
 #urlToList(url,file)
 
-#readLinks()
-print("asd")
+readLinks()
 #map reduce para contar palabras
