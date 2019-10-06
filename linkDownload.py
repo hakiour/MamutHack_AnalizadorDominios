@@ -35,23 +35,23 @@ def urlToList(url, dominio):
 	
 	#trabajaremos siempre con las palabras en minúsculas para evitar possibles errores de búsqueda
 	text = text.lower()
-	counts = Counter(text.split())		#calculamos frecuencia de las palabras
+	palabras = dict(Counter(text.split()))		#calculamos frecuencia de las palabras
 
-	for word in list(counts.keys()):					#utilizamos list() para evitar runtime error al iterar sobre keys()
+	for word in list(palabras.keys()):					#utilizamos list() para evitar runtime error al iterar sobre keys()
 		if(len(word)<4 or len(word)>10):
-			del counts[word]
+			del palabras[word]
 
 	#creamos un diccionario con el link como llave y la lista (otro dic en vd) de palabras y su freq
 	DicLink={
-		url : counts,
-		"SCORE" : 0
+		url : palabras,
+		"PUNTUACION" : 0
 	}
 
 
 	return DicLink
 
 
-def readLinks(url):
+def readLinks(url, tema):
 	rutaGoogle = 'http://www.google.com/search?btnG=1&q=site%3A'
 	pagina = requests.get(rutaGoogle + url)
 	tree = html.fromstring(pagina.content)
@@ -64,16 +64,17 @@ def readLinks(url):
 	
 
 	busqueda = {
-		"DOMINI" : urlSrc,
+		"DOMINI" : url,
 		"TEMATICA" : tema,
 		"LINKS" : {}
 	}
 
 	for link in arrayUrls[:-1]:
 		print("reading link: "+ link)
-		dicPalabrasLink = urlToList(link, urlSrc)
-		busqueda["LINKS"][link]=dicPalabrasLink[link]				#añadimos entrada de url: palabras.
+		dicPalabrasLink = urlToList(link, url)
+		busqueda["LINKS"][link]=dicPalabrasLink				#añadimos entrada de url: palabras.
 
+	print(busqueda)
 	return busqueda
 	
 
