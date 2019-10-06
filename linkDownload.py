@@ -51,51 +51,30 @@ def urlToList(url, dominio):
 	return DicLink
 
 
-def readLinks():
+def readLinks(url):
 	rutaGoogle = 'http://www.google.com/search?btnG=1&q=site%3A'
-	datosForm = cgi.FieldStorage()
+	pagina = requests.get(rutaGoogle + url)
+	tree = html.fromstring(pagina.content)
+	arrayUrls = []
 
-	if datosForm:
-		url = datosForm["url"].value
-		arrayUrl = (url.split("//"))
-		if len(arrayUrl) == 2: 
-			url = arrayUrl[1]
-		else: 
-			print('Error url')
-			return 0
+	for elementos in tree.xpath("//a"):
+		ruta = elementos.get("href")
+		if "/url?q" in ruta:
+			arrayUrls.append(elementos.get("href").replace("/url?q=",""))#"http://www.google.com"+elementos.get("href"))
+	
 
-		print(url)
+	busqueda = {
+		"DOMINI" : urlSrc,
+		"TEMATICA" : tema,
+		"LINKS" : {}
+	}
 
-		tema = datosForm["tema"].value
-		
-		pagina = requests.get(rutaGoogle + url)
-		tree = html.fromstring(pagina.content)
-		arrayUrls = []
+	for link in arrayUrls[:-1]:
+		print("reading link: "+ link)
+		dicPalabrasLink = urlToList(link, urlSrc)
+		busqueda["LINKS"][link]=dicPalabrasLink[link]				#añadimos entrada de url: palabras.
 
-		for elementos in tree.xpath("//a"):
-			ruta = elementos.get("href")
-			if "/url?q" in ruta:
-				arrayUrls.append(elementos.get("href").replace("/url?q=",""))#"http://www.google.com"+elementos.get("href"))
-		
+	return busqueda
+	
 
-		busqueda = {
-			"DOMINI" : urlSrc,
-			"TEMATICA" : tema,
-			"LINKS" : {}
-		}
 
-		for link in arrayUrls[:-1]:
-			print("reading link: "+ link)
-			urlToList(link, "test"+str(i), url)
-			i+=1
-		
-		
-	else:
-		print('Error input')
-		return None
-
-#url = "https://www.elmundo.es/pais-vasco/2019/07/10/5d25f9af21efa0c0578b456f.html"
-#urlToList(url,file)
-
-readLinks()
-#map reduce para contar palabras

@@ -27,7 +27,7 @@ function mostrarLoader(){
 
 function iniciarProceso(dominio, tematica) {
     $.ajax({
-        url: "../linkDownload.py",
+        url: "../FiltroPalabrasv2.0.py",
         type: "POST",
         data: {"url": dominio, "tema": tematica},
         success: function (response) {
